@@ -45,3 +45,6 @@
   width: 21px;
   border: none;
 }
+.card__like-button:hover {
+  color: gray;
+}
