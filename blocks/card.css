@@ -14,10 +14,12 @@
   flex-direction: column;
   list-style-type: none;
   border-radius: 10px;
+  overflow: hidden;
 }
 .card__image {
   width: 282px;
   height: 282px;
+  object-fit: cover;
 }
 .card__description {
   display: flex;
@@ -25,7 +27,6 @@
   padding: 25px 20px 25px 20px;
   align-items: center;
   justify-content: space-between;
-  border-radius: 3px;
 }
 .card__text {
   color: black;
@@ -46,5 +47,5 @@
   border: none;
 }
 .card__like-button:hover {
-  color: gray;
+  opacity: 0.5;
 }
