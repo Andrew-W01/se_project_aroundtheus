@@ -6,7 +6,7 @@
   max-width: 880px;
   width: 100%;
   position: relative;
-  margin: 0 auto;
+  margin: 20px auto;
 }
 .page__content {
   display: flex;
