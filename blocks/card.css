@@ -1,7 +1,7 @@
 .cards {
   margin-top: 40px;
 }
-.card__list {
+.cards__list {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, 282px);
@@ -41,7 +41,8 @@
 }
 
 .card__like-button {
-  background: transparent url(../images/heart-image.svg) center no-repeat;
+  background: transparent url(../images/like-image-2.svg) center no-repeat;
+  overflow: hidden;
   height: 18px;
   width: 21px;
   border: none;

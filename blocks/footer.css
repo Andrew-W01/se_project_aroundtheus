@@ -4,7 +4,7 @@
   font-family: Inter, Arial, Helvetica, sans-serif;
   line-height: 22px;
   font-size: 18px;
-  font-weight: 400px;
+  font-weight: 400;
 }
 .footer {
   margin-left: 200px;
@@ -12,7 +12,6 @@
 
 @media screen and (max-width: 320px) {
   .footer__copyright {
-    font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     margin: 48px 19px 36px 19px;

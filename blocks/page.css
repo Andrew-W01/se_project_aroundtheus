@@ -20,12 +20,15 @@
 @media screen and (max-width: 320px) {
   .page__logo {
     margin-left: 27px;
-    margin-top: 28px;
+    margin-bottom: 32px;
     margin-bottom: 32px;
     width: 126px;
     height: 24px;
   }
   .page__line {
     max-width: 480px;
+  }
+  .page__section {
+    margin-top: 0;
   }
 }
