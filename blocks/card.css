@@ -32,10 +32,11 @@
 .card__like-button {
   background: transparent url(../images/like-image-2.svg) center no-repeat;
   overflow: hidden;
-  height: 30px;
-  width: 47px;
+  height: 18px;
+  width: 21px;
   border: none;
   padding: 0;
+  margin-left: auto;
 }
 .card__like-button:hover {
   opacity: 0.6;
