@@ -21,6 +21,8 @@
   .page__logo {
     margin-left: 27px;
     margin-bottom: 32px;
+    width: 126px;
+    height: 24px;
   }
   .page__content {
     padding: 0;

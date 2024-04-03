@@ -7,10 +7,10 @@
   font-weight: 400;
 }
 .footer {
-  margin-left: 200px;
+  margin-left: 180px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 615px) {
   .footer__copyright {
     font-size: 14px;
     line-height: 17px;

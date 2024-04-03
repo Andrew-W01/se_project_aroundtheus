@@ -7,7 +7,7 @@
   border-bottom-style: solid;
   box-sizing: border-box;
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 620px) {
   .header {
     margin-top: 28px;
     margin-bottom: 0;
