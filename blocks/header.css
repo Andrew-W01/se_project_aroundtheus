@@ -1,6 +1,11 @@
 .header {
-  border-bottom: 0.7 rgb(84 84 84 0.7);
-  margin-top: 40px;
+  margin-top: 45px;
+  margin-bottom: 40px;
+  min-width: 320px;
+  border-bottom-color: rgba(84, 84, 84, 0.7);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  box-sizing: border-box;
 }
 @media screen and (max-width: 320px) {
   .header {

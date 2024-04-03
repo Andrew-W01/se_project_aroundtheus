@@ -9,10 +9,20 @@
   margin: auto;
 }
 .page__content {
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 .page__logo {
   margin-bottom: 41px;
+}
+@media screen and (max-width: 320px) {
+  .page__logo {
+    margin-left: 27px;
+    margin-bottom: 32px;
+  }
+  .page__content {
+    padding: 0;
+  }
 }

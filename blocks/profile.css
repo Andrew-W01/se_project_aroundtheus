@@ -28,21 +28,22 @@
   margin: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
   max-width: 373px;
 }
 
 .profile__edit-button {
+  cursor: pointer;
   background: transparent url(../images/pointer-cursor.svg) center no-repeat;
   height: 24px;
   width: 24px;
   grid-area: button;
-  margin-top: 16px;
+  margin-top: 13px;
   border-width: 1px;
   border-style: solid;
   border-color: #fff;
-  margin-left: 18px;
   margin-right: 1em;
+  margin-left: 24px;
+  padding: 0;
 }
 .profile__edit-button:hover {
   opacity: 0.6;
@@ -61,14 +62,18 @@
   max-width: 415px;
 }
 .profile__add-button {
-  background: transparent url(../images/pointer-cursor.svg) center no-repeat;
+  display: flex;
+  cursor: pointer;
+  background: transparent url(../images/cross-image.svg) center no-repeat;
   width: 150px;
   height: 50px;
   margin-left: auto;
+  margin-right: 0;
   border-width: 2px;
   border-style: solid;
   border-color: #fff;
-  margin-right: 1em;
+  border-radius: 2px;
+  padding: 0;
 }
 .profile__add-button:hover {
   opacity: 0.6;
@@ -98,7 +103,7 @@
     text-align: center;
     margin-top: 14px;
     font-size: 14px;
-    font-weight: 400;
+
     line-height: 17px;
   }
   .profile__add-button {
