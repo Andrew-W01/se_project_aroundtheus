@@ -25,10 +25,11 @@
   font-size: 42px;
   line-height: 48px;
   grid-area: title;
-  margin: 0;
-  text-overflow: ellipsis;
+  overflow: hidden;
   white-space: nowrap;
-  max-width: 373px;
+  text-overflow: ellipsis;
+  margin: 0;
+  max-width: 415px;
 }
 
 .profile__edit-button {
@@ -41,9 +42,8 @@
   border-width: 1px;
   border-style: solid;
   border-color: #fff;
-  margin-right: 10px;
-  margin-left: 24px;
-  padding: 0;
+  margin-right: 0px;
+  margin-left: 25px;
 }
 .profile__edit-button:hover {
   opacity: 0.6;
@@ -73,7 +73,6 @@
   border-style: solid;
   border-color: #fff;
   border-radius: 2px;
-  padding: 0;
 }
 .profile__add-button:hover {
   opacity: 0.6;
