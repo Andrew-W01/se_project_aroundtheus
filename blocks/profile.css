@@ -30,8 +30,8 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   margin: 0;
-  max-width: 415px;
   min-width: 196px;
+  max-width: 415px;
 }
 
 .profile__edit-button {
