@@ -10,7 +10,7 @@
   margin-left: 180px;
 }
 
-@media screen and (max-width: 615px) {
+@media screen and (max-width: 930px) and (max-width: 621px) {
   .footer__copyright {
     font-size: 14px;
     line-height: 17px;
