@@ -12,7 +12,7 @@
 
 ## Project video and pictures:
 
-- https://github.com/Andrew-W01.io/se_project_aroundtheus
+- https://github.com/Andrew-W01.io/se_project_aroundtheus/index.html
 
 - https://drive.google.com/file/d/1S3G-LDsdPSH6YN6KC1VI55wuddQrsE9R/view?usp=drive_linkS
 
