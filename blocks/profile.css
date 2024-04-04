@@ -30,7 +30,6 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   margin: 0;
-  min-width: 196px;
   max-width: 415px;
 }
 
@@ -92,6 +91,7 @@
   .profile__title {
     font-size: 22px;
     line-height: 26.63px;
+    max-width: 196px;
   }
 
   .profile__info {
@@ -105,7 +105,6 @@
     text-align: center;
     margin-top: 14px;
     font-size: 14px;
-
     line-height: 16.94px;
   }
   .profile__add-button {
