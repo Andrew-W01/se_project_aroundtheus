@@ -6,9 +6,19 @@
   border-bottom-style: solid;
   box-sizing: border-box;
 }
+.header__logo {
+  margin-bottom: 41px;
+}
+
 @media screen and (max-width: 620px) {
   .header {
     margin-top: 28px;
     margin-bottom: 0;
+  }
+  .header__logo {
+    margin-left: 27px;
+    margin-bottom: 32px;
+    width: 126px;
+    height: 24px;
   }
 }
