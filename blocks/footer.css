@@ -6,17 +6,11 @@
   font-size: 18px;
   font-weight: 400;
 }
-.footer {
-  margin-left: 180px;
-}
 
 @media screen and (max-width: 930px) and (max-width: 621px) {
   .footer__copyright {
     font-size: 14px;
     line-height: 17px;
     margin: 48px 19px 36px 19px;
-  }
-  .footer {
-    margin: 0;
   }
 }

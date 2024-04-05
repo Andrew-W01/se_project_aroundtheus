@@ -3,14 +3,20 @@
   color: white;
 }
 .page__section {
-  max-width: 880px;
   width: 100%;
   position: relative;
   margin: auto;
 }
 .page__content {
+  margin: 0 auto;
+  max-width: 880px;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+@media screen and (max-width: 320px) {
+  .page__content {
+    padding: 0;
+  }
 }
