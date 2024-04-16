@@ -9,7 +9,7 @@
   padding: 0 19px;
   display: none;
 }
-.modal__opened {
+.modal_opened {
   display: flex;
 }
 
@@ -58,7 +58,7 @@
   border-bottom-color: rgba(0, 0, 0, 0.2);
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  font-family: ;
+  font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 16.94px;
