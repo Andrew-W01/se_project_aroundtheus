@@ -42,6 +42,8 @@
         <p class="footer__copyright">&copy; 2024 Around The U.S.</p>
       </footer>
     </div>
+
+    <!-- Edit modal -->
     <div class="modal" id="profileEditModal">
       <div class="modal__container">
         <button class="modal__close"></button>
@@ -65,6 +67,31 @@
         </form>
       </div>
     </div>
+
+    <!-- Add card modal-->
+    <div class="modal">
+      <div class="modal__container">
+        <button class="modal__close"></button>
+        <h3 class="modal__heading">New Place</h3>
+        <form class="modal__form" id="add-card-form">
+          <input
+            class="modal__input modal__input_type_title"
+            type="text"
+            name="title"
+            placeholder="Title"
+          />
+          <input
+            class="modal__input modal__input_type_url"
+            type="text"
+            name="url"
+            placeholder="Image URL"
+          />
+          <button class="modal__button">Save</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Template -->
     <template id="card-template">
       <li class="card">
         <img src="" alt="" class="card__image" />
