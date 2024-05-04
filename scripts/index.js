@@ -40,10 +40,8 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 
-const cardTitleInput = addCardFormElement.querySelector(
-  ".modal__input_type_title"
-);
-const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
+const cardTitleInput = addCardModal.querySelector(".modal__input_type_title");
+const cardUrlInput = addCardModal.querySelector(".modal__input_type_url");
 
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
