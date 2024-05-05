@@ -155,5 +155,5 @@ initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
 // NOTES
 
-// Add a click listener to thye card image element
+// Add a click listener to the card image element
 // openModal with previewImageModal

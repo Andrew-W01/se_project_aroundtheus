@@ -53,6 +53,7 @@
   cursor: pointer;
   padding: 0;
   width: 18px;
+  box-sizing: border-box;
   height: 19.3px;
   top: 36px;
   left: 249px;
