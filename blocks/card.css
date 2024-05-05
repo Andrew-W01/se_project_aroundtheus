@@ -39,6 +39,26 @@
 
   cursor: pointer;
 }
+
+.card__like-button_active {
+  background-image: url(..//images/Active-heart.svg);
+}
 .card__like-button:hover {
+  opacity: 0.6;
+}
+
+.card__trash-button {
+  background: transparent url(../images/trashcan.svg) center no-repeat;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  width: 18px;
+  height: 19.3px;
+  top: 36px;
+  left: 249px;
+  border: none;
+}
+
+.card__trash-button:hover {
   opacity: 0.6;
 }

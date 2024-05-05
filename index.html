@@ -91,9 +91,24 @@
       </div>
     </div>
 
+    <!--Picture Preview Modal-->
+    <div class="modal" id="preview-picture-modal">
+      <div class="modal__picture_container">
+        <img src="" alt="" class="modal__picture" />
+        <button
+          class="modal__close-button"
+          id="picture_close-button"
+          type="button"
+        ></button>
+
+        <h3 class="modal_sub-heading"></h3>
+      </div>
+    </div>
+
     <!-- Template -->
     <template id="card-template">
       <li class="card">
+        <button class="card__trash-button" type="button"></button>
         <img src="" alt="" class="card__image" />
         <div class="card__description">
           <h2 class="card__title"></h2>
