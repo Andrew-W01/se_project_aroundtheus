@@ -118,20 +118,6 @@
   max-height: 75vh;
 }
 
-.modal__close-button {
-  width: 40px;
-  height: 40px;
-  position: absolute;
-  cursor: pointer;
-  top: -45px;
-  right: -45px;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url(../images/Close-Icon.svg);
-  border: none;
-  padding: 0;
-}
 .modal__close-button:hover {
   opacity: 0.6;
 }
