@@ -115,10 +115,11 @@ function handleProfileEditSubmit(e) {
 
 function handleAddCardEditSubmit(e) {
   e.preventDefault();
-  const name = (cardTitleInput.value = "");
-  const link = (cardUrlInput.value = "");
-  renderCard({ name, link }, cardsWrap);
+  const name = cardTitleInput.value;
+  const link = cardUrlInput.value;
+  renderCard({ link, name }, cardsWrap);
   closeModal(addCardModal);
+  addCardFormElement.reset();
 }
 
 // Event Listeners
