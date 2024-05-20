@@ -58,16 +58,6 @@
   flex-direction: column;
 }
 
-.modal__text-box {
-  border: none;
-  border-bottom-color: rgba(0, 0, 0, 0.2);
-  border-bottom-width: 1px;
-  border-bottom-style: solid;
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16.94px;
-}
 .modal__text-box:first-of-type {
   margin-bottom: 29px;
 }
@@ -120,6 +110,17 @@
 
 .modal__close-button:hover {
   opacity: 0.6;
+}
+
+.modal__error {
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  opacity: 0;
+  position: absolute;
+  top: calc(100% = 5 px);
+  left: 0;
+  transition: opacity 0.3s;
 }
 
 @media screen and (max-width: 620px) {

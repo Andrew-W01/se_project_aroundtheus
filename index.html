@@ -50,19 +50,27 @@
         <h3 class="modal__heading">Edit Profile</h3>
         <form class="modal__form">
           <input
-            class="modal__text-box"
+            class="modal__input modal__input_type_error"
             type="text"
             id="profile-title-input"
             name="title"
             placeholder="Name"
+            maxlength="40"
+            minlength="2"
+            required
           />
+          <span class="modal__error" id="profile-title-error"></span>
           <input
-            class="modal__text-box"
+            class="modal__input"
             type="text"
             id="profile-description-input"
             name="description"
             placeholder="Description"
+            maxlength="200"
+            minlength="2"
+            required
           />
+          <span class="modal__error" id="profile-description-error"></span>
           <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
@@ -118,5 +126,6 @@
     </template>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
   </body>
 </html>
