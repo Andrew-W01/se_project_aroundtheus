@@ -62,10 +62,14 @@ const cardUrlInput = addCardModal.querySelector(".modal__input_type_url");
 
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeWithEscape);
+  modal.removeEventListener("mousedown", closePopupOverlay);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeWithEscape);
+  modal.addEventListener("mousedown", closePopupOverlay);
 }
 function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData);
@@ -120,6 +124,21 @@ function handleAddCardEditSubmit(e) {
   renderCard({ link, name }, cardsWrap);
   closeModal(addCardModal);
   addCardFormElement.reset();
+}
+
+function closeWithEscape(e) {
+  if (e.key === "Escape") {
+    const openPopup = document.querySelector(".modal_opened");
+    if (openPopup) {
+      closeModal(openPopup);
+    }
+  }
+}
+
+function closePopupOverlay(e) {
+  if (e.target === e.currentTarget) {
+    closeModal(e.currentTarget);
+  }
 }
 
 // Event Listeners
