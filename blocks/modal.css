@@ -25,6 +25,7 @@
   padding: 36px;
   border-radius: 10px;
   max-width: 430px;
+  width: 358px;
 }
 
 .modal__close {
@@ -83,10 +84,6 @@
   margin-bottom: 48px;
 }
 
-.modal__input:invalid {
-  border-bottom: 1px solid red;
-}
-
 .modal__input-error {
   color: red;
   font-family: Inter, Arial, Helvetica, sans-serif;
@@ -95,6 +92,7 @@
   line-height: 14.52px;
   position: absolute;
   top: 140px;
+  border-bottom: 1px solid red;
 }
 
 .modal__input-error:last-of-type {
@@ -113,7 +111,6 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 21px;
-  width: 358px;
   height: 50px;
   cursor: pointer;
 }
@@ -122,6 +119,9 @@
   opacity: 50%;
 }
 
+.modal__button_disabled:hover {
+  opacity: 0.5;
+}
 .modal__picture_container {
   position: relative;
   margin: auto;
@@ -141,6 +141,7 @@
   border-style: solid;
   border-color: rgba(0, 0, 0, 0.2);
   color: rgba(0, 0, 0, 0.2);
+  cursor: default;
   padding: 0;
 }
 
