@@ -120,7 +120,7 @@
 }
 
 .modal__button_disabled:hover {
-  opacity: 0.5;
+  opacity: 1;
 }
 .modal__picture_container {
   position: relative;
