@@ -25,6 +25,7 @@
   padding: 36px;
   border-radius: 10px;
   max-width: 430px;
+  width: 430px;
   width: 358px;
 }
 
@@ -84,6 +85,10 @@
   margin-bottom: 48px;
 }
 
+.modal__input:invalid {
+  border-bottom: 1px solid red;
+}
+
 .modal__input-error {
   color: red;
   font-family: Inter, Arial, Helvetica, sans-serif;
@@ -92,7 +97,6 @@
   line-height: 14.52px;
   position: absolute;
   top: 140px;
-  border-bottom: 1px solid red;
 }
 
 .modal__input-error:last-of-type {
