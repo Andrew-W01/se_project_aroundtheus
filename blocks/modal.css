@@ -90,11 +90,7 @@
   margin-bottom: 48px;
 }
 
-.modal__input:invalid {
-  border-bottom: 1px solid red;
-}
-
-.modal__input-error {
+.modal__error {
   color: red;
   font-family: Inter, Arial, Helvetica, sans-serif;
   font-weight: 400;
@@ -104,7 +100,7 @@
   top: 140px;
 }
 
-.modal__input-error:last-of-type {
+.modal__error:last-of-type {
   position: absolute;
   top: 190px;
 }
