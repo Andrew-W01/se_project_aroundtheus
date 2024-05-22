@@ -12,6 +12,7 @@
   visibility: hidden;
   transition: visibility 0s 0.6s, opacity 0.6s;
 }
+
 .modal_opened {
   opacity: 1;
   visibility: visible;
@@ -25,7 +26,6 @@
   padding: 36px;
   border-radius: 10px;
   max-width: 430px;
-  width: 430px;
   width: 358px;
 }
 
@@ -42,9 +42,11 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
+
 .modal__close:hover {
   opacity: 50%;
 }
+
 .modal__heading {
   color: #000;
   font-family: Inter, Arial, Helvetica, sans-serif;
@@ -55,6 +57,7 @@
   padding-bottom: 54px;
   padding-right: 28px;
 }
+
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -67,6 +70,7 @@
 .modal__text-box:last-of-type {
   margin-bottom: 48px;
 }
+
 .modal__input {
   border: none;
   border-bottom-color: rgba(0, 0, 0, 0.2);
@@ -77,16 +81,13 @@
   font-size: 14px;
   line-height: 16.94px;
 }
+
 .modal__input:first-of-type {
   margin-bottom: 29px;
 }
 
 .modal__input:last-of-type {
   margin-bottom: 48px;
-}
-
-.modal__input:invalid {
-  border-bottom: 1px solid red;
 }
 
 .modal__input-error {
@@ -97,6 +98,7 @@
   line-height: 14.52px;
   position: absolute;
   top: 140px;
+  border-bottom: 1px solid red;
 }
 
 .modal__input-error:last-of-type {
@@ -126,6 +128,7 @@
 .modal__button_disabled:hover {
   opacity: 1;
 }
+
 .modal__picture_container {
   position: relative;
   margin: auto;
@@ -173,7 +176,6 @@
   .modal__input:first-of-type {
     margin-bottom: 30px;
   }
-
   .modal__input:last-of-type {
     margin-bottom: 45px;
   }
