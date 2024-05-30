@@ -1,3 +1,5 @@
+import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -173,7 +175,21 @@ addcardModalCloseButton.addEventListener("click", () =>
 
 initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
-// NOTES
+// validators
 
-// Add a click listener to the card image element
-// openModal with previewImageModal
+const validationSettings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inputErrorClass: "modal__input-error",
+  inactiveButtonClass: "modal__button_disabled",
+  errorclass: "modal__error",
+};
+
+const editFormElement = profileEditModal.querySelector(".modal__form");
+const addFormElement = addCardModal.querySelector(".modal__form");
+
+const editFormValidator = new FormValidator(
+  validationSettings,
+  editFormElement
+);
+const addFormValidator = new FormValidator(validationSettings, addFormElement);
