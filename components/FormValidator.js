@@ -54,7 +54,7 @@ export default class FormValidator {
   }
 
   enableValidation() {
-    this._formEls = [...document.querySelectorAll(options.formSelector)];
+    this._formEls = [...document.querySelectorAll(this._options.inputSelector)];
     this._formEls.forEach((formEl) => {
       this._formEl.addEventListener("submit", (e) => {
         e.preventDefault();
