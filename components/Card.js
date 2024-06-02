@@ -6,14 +6,11 @@ export default class Card {
   }
 
   _setEventListeners() {
-    // ".card__like-button"
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
         this._handleLikeIcon();
       });
-
-    //".card__trash-button"
 
     this._cardElement
       .querySelector(".card__trash-button")
