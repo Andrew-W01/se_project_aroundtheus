@@ -1,6 +1,8 @@
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 
+const cardSelector = document.querySelector("#card-template");
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -34,14 +36,12 @@ const cardTemplate =
 /*=============================================
 =            wrapper            =
 =============================================*/
-
 const profileEditModal = document.querySelector("#profileEditModal");
 const addCardModal = document.querySelector("#add-card-modal");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const cardsWrap = document.querySelector(".cards__list");
 const previewPictureModal = document.querySelector("#preview-picture-modal");
-const cardSelector = "#card-template";
 
 /*=============================================
 =             Buttons and other DOM nodes            =
@@ -85,42 +85,44 @@ function openModal(modal) {
 }
 
 function renderCard(cardData, wrapper) {
-  // const cardElement = getCardElement(cardData);
-  const card = new Card(cardData, cardSelector);
+  const cardElement = getCardElement(cardData);
+  const card = new Card(cardData, cardSelector, getCardElement);
   wrapper.prepend(card.getView());
 }
-//
-// function getCardElement(cardData) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImageEl = cardElement.querySelector(".card__image");
-//   const cardTitleEl = cardElement.querySelector(".card__title");
-//   const likeButton = cardElement.querySelector(".card__like-button");
-//   const trashButton = cardElement.querySelector(".card__trash-button");
 
-//   likeButton.addEventListener("click", () => {
-//     likeButton.classList.toggle("card__like-button_active");
-//   });
+initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
-//   trashButton.addEventListener("click", () => {
-//     cardElement.remove();
-//   });
-//   //
-//   cardImageEl.addEventListener("click", (e) => {
-//     openModal(previewPictureModal);
-//     const previewPictureModalImage =
-//       previewPictureModal.querySelector(".modal__picture");
-//     const previewPictureCaption =
-//       previewPictureModal.querySelector(".modal_sub-heading");
-//     previewPictureCaption.textContent = e.target.alt;
-//     previewPictureModalImage.src = e.target.src;
-//     previewPictureModalImage.alt = e.target.alt;
-//   });
+function getCardElement(cardData) {
+  const cardElement = cardTemplate.cloneNode(true);
+  const cardImageEl = cardElement.querySelector(".card__image");
+  const cardTitleEl = cardElement.querySelector(".card__title");
+  const likeButton = cardElement.querySelector(".card__like-button");
+  const trashButton = cardElement.querySelector(".card__trash-button");
 
-//   cardImageEl.setAttribute("src", cardData.link);
-//   cardImageEl.setAttribute("alt", cardData.name);
-//   cardTitleEl.textContent = cardData.name;
-//   return cardElement;
-// }
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  trashButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
+
+  cardImageEl.addEventListener("click", (e) => {
+    openModal(previewPictureModal);
+    const previewPictureModalImage =
+      previewPictureModal.querySelector(".modal__picture");
+    const previewPictureCaption =
+      previewPictureModal.querySelector(".modal_sub-heading");
+    previewPictureCaption.textContent = e.target.alt;
+    previewPictureModalImage.src = e.target.src;
+    previewPictureModalImage.alt = e.target.alt;
+  });
+
+  cardImageEl.setAttribute("src", cardData.link);
+  cardImageEl.setAttribute("alt", cardData.name);
+  cardTitleEl.textContent = cardData.name;
+  return cardElement;
+}
 
 /*=============================================
 =            Event Handlers            =
@@ -195,8 +197,6 @@ addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 addcardModalCloseButton.addEventListener("click", () =>
   closeModal(addCardModal)
 );
-
-initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
 /*=============================================
 =            validators            =
