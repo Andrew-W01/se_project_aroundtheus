@@ -1,4 +1,5 @@
 import FormValidator from "../components/FormValidator.js";
+import Card from "../components/Card.js";
 
 const initialCards = [
   {
@@ -40,6 +41,7 @@ const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const cardsWrap = document.querySelector(".cards__list");
 const previewPictureModal = document.querySelector("#preview-picture-modal");
+const cardSelector = "#card-template";
 
 /*=============================================
 =             Buttons and other DOM nodes            =
@@ -81,11 +83,13 @@ function openModal(modal) {
   document.addEventListener("keydown", closeWithEscape);
   modal.addEventListener("mousedown", closePopupOverlay);
 }
+
 function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData);
+  const card = new Card(cardData, cardSelector);
   wrapper.prepend(cardElement);
 }
-
+//
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
@@ -93,10 +97,14 @@ function getCardElement(cardData) {
   const likeButton = cardElement.querySelector(".card__like-button");
   const trashButton = cardElement.querySelector(".card__trash-button");
 
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
   trashButton.addEventListener("click", () => {
     cardElement.remove();
   });
-
+  //
   cardImageEl.addEventListener("click", (e) => {
     openModal(previewPictureModal);
     const previewPictureModalImage =
@@ -106,10 +114,6 @@ function getCardElement(cardData) {
     previewPictureCaption.textContent = e.target.alt;
     previewPictureModalImage.src = e.target.src;
     previewPictureModalImage.alt = e.target.alt;
-  });
-
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
   });
 
   cardImageEl.setAttribute("src", cardData.link);
