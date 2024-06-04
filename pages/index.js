@@ -87,14 +87,14 @@ function openModal(modal) {
 function renderCard(cardData, wrapper) {
   const cardElement = getCardElement(cardData);
   const card = new Card(cardData, cardSelector);
-  wrapper.prepend(cardElement);
+  wrapper.prepend(card.getView());
 }
-//
+
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
+  // const likeButton = cardElement.querySelector(".card__like-button");
   const trashButton = cardElement.querySelector(".card__trash-button");
 
   likeButton.addEventListener("click", () => {
