@@ -177,13 +177,6 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 =            preview image close button            =
 =============================================*/
 
-function handleImageClick(cardData) {
-  previewInput.src = cardData.link;
-  previewInput.alt = cardData.name;
-  previewModalDescription.textContent = cardData.name;
-  openModal(previewPictureModal);
-}
-
 previewPictureCloseButton.addEventListener("click", () => {
   closeModal(previewPictureModal);
 });
