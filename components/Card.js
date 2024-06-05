@@ -42,9 +42,7 @@ class Card {
   }
   getView() {
     this._cardElement = this._getTemplate();
-    this._cardElement.querySelector(
-      ".card__image"
-    ).style.backgroundImage = `url(${this._link})`;
+    this._cardElement.querySelector(".card__image").src = this._link;
     this._cardElement.querySelector(".card__title").textContent = this._name;
 
     this._setEventListeners();
