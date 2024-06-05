@@ -20,8 +20,6 @@ class FormValidator {
     this._formEl.classList.remove(this._inputErrorClass);
     errorMessageEl.textContent = "";
     errorMessageEl.classList.remove(this._errorclass);
-
-    console.log(this._errorMessageEl);
   }
 
   _toggleButtonState() {
