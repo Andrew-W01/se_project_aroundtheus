@@ -107,22 +107,21 @@ initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 //     cardElement.remove();
 //   });
 
-//   cardImageEl.addEventListener("click", (e) => {
-//     openModal(previewPictureModal);
-//     const previewPictureModalImage =
-//       previewPictureModal.querySelector(".modal__picture");
-//     const previewPictureCaption =
-//       previewPictureModal.querySelector(".modal_sub-heading");
-//     previewPictureCaption.textContent = e.target.alt;
-//     previewPictureModalImage.src = e.target.src;
-//     previewPictureModalImage.alt = e.target.alt;
-//   });
+// cardImageEl.addEventListener("click", (e) => {
+//   openModal(previewPictureModal);
+//   const previewPictureModalImage =
+//     previewPictureModal.querySelector(".modal__picture");
+//   const previewPictureCaption =
+//     previewPictureModal.querySelector(".modal_sub-heading");
+//   previewPictureCaption.textContent = e.target.alt;
+//   previewPictureModalImage.src = e.target.src;
+//   previewPictureModalImage.alt = e.target.alt;
+// });
 
-//   cardImageEl.setAttribute("src", cardData.link);
-//   cardImageEl.setAttribute("alt", cardData.name);
-//   cardTitleEl.textContent = cardData.name;
+// cardImageEl.setAttribute("src", cardData.link);
+// cardImageEl.setAttribute("alt", cardData.name);
+// cardTitleEl.textContent = cardData.name;
 //   return cardElement;
-// }
 
 /*=============================================
 =            Event Handlers            =
@@ -163,13 +162,6 @@ function closePopupOverlay(e) {
 =            Event Listeners            =
 =============================================*/
 
-profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
-
-  openModal(profileEditModal);
-});
-
 profileModalCloseButton.addEventListener("click", () =>
   closeModal(profileEditModal)
 );
@@ -184,6 +176,13 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 /*=============================================
 =            preview image close button            =
 =============================================*/
+
+function handleImageClick(cardData) {
+  previewInput.src = cardData.link;
+  previewInput.alt = cardData.name;
+  previewModalDescription.textContent = cardData.name;
+  openModal(previewPictureModal);
+}
 
 previewPictureCloseButton.addEventListener("click", () => {
   closeModal(previewPictureModal);

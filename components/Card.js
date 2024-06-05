@@ -1,7 +1,8 @@
 class Card {
-  constructor(cardData, cardSelector) {
+  constructor(cardData, cardSelector, handlePreviewPicture) {
     this._name = cardData.name;
     this._link = cardData.link;
+    this._handlePreviewPicture = handlePreviewPicture;
     this._cardSelector = cardSelector;
   }
 
@@ -33,12 +34,12 @@ class Card {
     this._cardelement.remove();
   };
 
-  _handlePreviewPicture(e) {
-    previewPictureModalImage.src = e.target.src;
-    previewPictureModalImage.alt = e.target.alt;
-    previewPictureCaption.textContent = e.target.alt;
-    openModal(previewPictureModal);
-  }
+  // _handlePreviewPicture(e) {
+  //   previewPictureModalImage.src = e.target.src;
+  //   previewPictureModalImage.alt = e.target.alt;
+  //   previewPictureCaption.textContent = e.target.alt;
+  //   openModal(previewPictureModal);
+  // }
 
   _getTemplate() {
     return document
@@ -56,7 +57,7 @@ class Card {
 
     this._setEventListeners();
 
-    return this._element;
+    return this._cardelement;
   }
 }
 
