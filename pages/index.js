@@ -167,6 +167,13 @@ function closePopupOverlay(e) {
 =            Event Listeners            =
 =============================================*/
 
+profileEditButton.addEventListener("click", () => {
+  profileTitleInput.value = profileTitle.textContent;
+  profileDescriptionInput.value = profileDescription.textContent;
+
+  openModal(profileEditModal);
+});
+
 profileModalCloseButton.addEventListener("click", () =>
   closeModal(profileEditModal)
 );
