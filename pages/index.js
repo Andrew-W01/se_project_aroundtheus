@@ -42,6 +42,7 @@ const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const cardsWrap = document.querySelector(".cards__list");
 const previewPictureModal = document.querySelector("#preview-picture-modal");
+const previewPictureInput = document.querySelector("#preview-zoom");
 
 /*=============================================
 =             Buttons and other DOM nodes            =
@@ -84,13 +85,17 @@ function openModal(modal) {
   modal.addEventListener("mousedown", closePopupOverlay);
 }
 
-function renderCard(cardData, wrapper) {
-  // const cardElement = getCardElement(cardData);
-  const card = new Card(cardData, cardSelector);
-  wrapper.prepend(card.getView());
+function renderCard(cardData) {
+  const cardElement = createCard(cardData);
+  cardsWrap.prepend(cardElement);
 }
 
-initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
+function createCard(cardData) {
+  const cardElement = new Card(cardData, cardSelector, handleImageClick);
+  return cardElement.getView();
+}
+
+initialCards.forEach((cardData) => renderCard(cardData));
 
 // function getCardElement(cardData) {
 //   const cardElement = cardTemplate.cloneNode(true);
@@ -176,6 +181,12 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 /*=============================================
 =            preview image close button            =
 =============================================*/
+function handleImageClick(cardData) {
+  previewPictureInput.src = cardData.link;
+  previewPictureInput.alt = cardData.name;
+  // previewModalDescription.textContent = cardData.name;
+  openModal(previewPictureModal);
+}
 
 previewPictureCloseButton.addEventListener("click", () => {
   closeModal(previewPictureModal);
