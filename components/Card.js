@@ -7,39 +7,32 @@ class Card {
   }
 
   _setEventListeners() {
-    this._cardelement
+    this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
         this._handleLikeButton();
       });
-    this._cardelement
+    this._cardElement
       .querySelector(".card__trash-button")
       .addEventListener("click", () => {
         this._handleTrashButton();
       });
-    this._cardelement
+    this._cardElement
       .querySelector(".card__image")
-      .addEventListener("click", (e) => {
-        this._handlePreviewPicture(e);
+      .addEventListener("click", () => {
+        this._handlePreviewPicture({ name: this._name, link: this._link });
       });
   }
 
   _handleLikeButton = () => {
-    this._cardelement
+    this._cardElement
       .querySelector(".card__like-button")
       .classList.toggle("card__like-button_active");
   };
 
   _handleTrashButton = () => {
-    this._cardelement.remove();
+    this._cardElement.remove();
   };
-
-  // _handlePreviewPicture(e) {
-  //   previewPictureModalImage.src = e.target.src;
-  //   previewPictureModalImage.alt = e.target.alt;
-  //   previewPictureCaption.textContent = e.target.alt;
-  //   openModal(previewPictureModal);
-  // }
 
   _getTemplate() {
     return document
@@ -48,16 +41,15 @@ class Card {
       .cloneNode(true);
   }
   getView() {
-    this._cardelement = this._getTemplate();
-
-    this._cardelement.querySelector(
+    this._cardElement = this._getTemplate();
+    this._cardElement.querySelector(
       ".card__image"
     ).style.backgroundImage = `url(${this._link})`;
-    this._cardelement.querySelector(".card__title").textContent = this._name;
+    this._cardElement.querySelector(".card__title").textContent = this._name;
 
     this._setEventListeners();
 
-    return this._cardelement;
+    return this._cardElement;
   }
 }
 

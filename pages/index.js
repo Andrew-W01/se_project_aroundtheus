@@ -42,7 +42,8 @@ const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
 const cardsWrap = document.querySelector(".cards__list");
 const previewPictureModal = document.querySelector("#preview-picture-modal");
-const previewPictureInput = document.querySelector("#preview-zoom");
+const previewPictureInput = document.querySelector(".modal__picture");
+const previewModalDescription = document.querySelector(".modal_sub-heading");
 
 /*=============================================
 =             Buttons and other DOM nodes            =
@@ -91,7 +92,7 @@ function renderCard(cardData) {
 }
 
 function createCard(cardData) {
-  const cardElement = new Card(cardData, cardSelector, handleImageClick);
+  const cardElement = new Card(cardData, cardSelector, handlePreviewPicture);
   return cardElement.getView();
 }
 
@@ -188,10 +189,10 @@ profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 /*=============================================
 =            preview image close button            =
 =============================================*/
-function handleImageClick(cardData) {
+function handlePreviewPicture(cardData) {
   previewPictureInput.src = cardData.link;
   previewPictureInput.alt = cardData.name;
-  // previewModalDescription.textContent = cardData.name;
+  previewModalDescription.textContent = cardData.name;
   openModal(previewPictureModal);
 }
 
