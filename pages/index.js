@@ -98,37 +98,6 @@ function createCard(cardData) {
 
 initialCards.forEach((cardData) => renderCard(cardData));
 
-// function getCardElement(cardData) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImageEl = cardElement.querySelector(".card__image");
-//   const cardTitleEl = cardElement.querySelector(".card__title");
-//   const likeButton = cardElement.querySelector(".card__like-button");
-//   const trashButton = cardElement.querySelector(".card__trash-button");
-
-//   likeButton.addEventListener("click", () => {
-//     likeButton.classList.toggle("card__like-button_active");
-//   });
-
-//   trashButton.addEventListener("click", () => {
-//     cardElement.remove();
-//   });
-
-// cardImageEl.addEventListener("click", (e) => {
-//   openModal(previewPictureModal);
-//   const previewPictureModalImage =
-//     previewPictureModal.querySelector(".modal__picture");
-//   const previewPictureCaption =
-//     previewPictureModal.querySelector(".modal_sub-heading");
-//   previewPictureCaption.textContent = e.target.alt;
-//   previewPictureModalImage.src = e.target.src;
-//   previewPictureModalImage.alt = e.target.alt;
-// });
-
-// cardImageEl.setAttribute("src", cardData.link);
-// cardImageEl.setAttribute("alt", cardData.name);
-// cardTitleEl.textContent = cardData.name;
-//   return cardElement;
-
 /*=============================================
 =            Event Handlers            =
 =============================================*/
