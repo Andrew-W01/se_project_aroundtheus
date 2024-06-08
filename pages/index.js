@@ -92,7 +92,11 @@ function renderCard(cardData) {
 }
 
 function createCard(cardData) {
-  const cardElement = new Card(cardData, cardSelector, handlePreviewPicture);
+  const cardElement = new Card(
+    cardData,
+    "#card-template",
+    handlePreviewPicture
+  );
   return cardElement.getView();
 }
 
@@ -191,14 +195,14 @@ const validationSettings = {
   errorclass: "modal__error",
 };
 
-const editFormElement = profileEditModal.querySelector(".modal__form");
-const addFormElement = addCardModal.querySelector(".modal__form");
-
 const editFormValidator = new FormValidator(
   validationSettings,
-  editFormElement
+  profileEditModal
 );
 editFormValidator.enableValidation();
 
-const addFormValidator = new FormValidator(validationSettings, addFormElement);
+const addFormValidator = new FormValidator(
+  validationSettings,
+  addCardFormElement
+);
 addFormValidator.enableValidation();

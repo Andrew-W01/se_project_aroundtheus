@@ -1,9 +1,9 @@
 class Card {
   constructor(cardData, cardSelector, handlePreviewPicture) {
+    this._cardSelector = cardSelector;
     this._name = cardData.name;
     this._link = cardData.link;
     this._handlePreviewPicture = handlePreviewPicture;
-    this._cardSelector = cardSelector;
   }
 
   _setEventListeners() {
@@ -17,11 +17,9 @@ class Card {
       .addEventListener("click", () => {
         this._handleTrashButton();
       });
-    this._cardElement
-      .querySelector(".card__image")
-      .addEventListener("click", () => {
-        this._handlePreviewPicture({ name: this._name, link: this._link });
-      });
+    this._cardImageEl.addEventListener("click", () => {
+      this._handlePreviewPicture({ name: this._name, link: this._link });
+    });
   }
 
   _handleLikeButton = () => {
@@ -36,14 +34,18 @@ class Card {
 
   _getTemplate() {
     return document
-      .querySelector("#card-template")
+      .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
   }
   getView() {
     this._cardElement = this._getTemplate();
-    this._cardElement.querySelector(".card__image").src = this._link;
-    this._cardElement.querySelector(".card__title").textContent = this._name;
+
+    this._cardImageEl = this._cardElement.querySelector(".card__image");
+    this._cardTitle = this._cardElement.querySelector(".card__title");
+    this._cardImageEl.src = this._link;
+    this._cardImageEl.alt = this._name;
+    this._cardTitle.textContent = this._name;
 
     this._setEventListeners();
 
