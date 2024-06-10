@@ -120,6 +120,7 @@ function handleAddCardEditSubmit(e) {
   renderCard({ link, name }, cardsWrap);
   closeModal(addCardModal);
   addCardFormElement.reset();
+  addFormValidator.disabledButton();
 }
 
 function closeWithEscape(e) {
@@ -144,8 +145,8 @@ function closePopupOverlay(e) {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-
   openModal(profileEditModal);
+  editFormValidator.disabledButton();
 });
 
 profileModalCloseButton.addEventListener("click", () =>
