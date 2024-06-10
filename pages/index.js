@@ -120,7 +120,7 @@ function handleAddCardEditSubmit(e) {
   renderCard({ link, name }, cardsWrap);
   closeModal(addCardModal);
   addCardFormElement.reset();
-  addFormValidator.disabledButton();
+  addFormValidator.disableButton();
 }
 
 function closeWithEscape(e) {
@@ -146,7 +146,7 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
-  editFormValidator.disabledButton();
+  editFormValidator.disableButton();
 });
 
 profileModalCloseButton.addEventListener("click", () =>
