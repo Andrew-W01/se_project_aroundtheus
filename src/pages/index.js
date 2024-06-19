@@ -5,8 +5,6 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
-const cardSelector = document.querySelector("#card-template");
-
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -52,7 +50,6 @@ const profileEditButton = document.querySelector("#profile-edit-button");
 /*=============================================
 =            form data            =
 =============================================*/
-
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"

@@ -1,5 +1,5 @@
 export default class Popup {
-  constructor({ popupSelector }) {
+  constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
   }
 
@@ -24,7 +24,7 @@ export default class Popup {
       if (evt.target.classList.contains("modal_opened")) {
         this.close();
       }
-      if (evt.target.classList.contains("picture__close-button")) {
+      if (evt.target.classList.contains("modal__close-button")) {
         this.close();
       }
     });
