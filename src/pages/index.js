@@ -92,8 +92,8 @@ const cardList = new Section(
 cardList.renderItems();
 
 function handleAddCardEditSubmit(cardData) {
-  const name = cardData.value;
-  const link = cardData.value;
+  const name = cardData.title;
+  const link = cardData.url;
   cardList.addItem({ link, name });
   addFormValidator.disableButton();
   cardPopupForm.close();
@@ -130,8 +130,8 @@ cardPopupForm.setEventListeners();
 profileEditButton.addEventListener("click", () => {
   profilePopupForm.open();
   const userData = userInfo.getUserInfo();
-  profileTitleInput.value = userData.textContent;
-  profileDescriptionInput.value = userData.textContent;
+  profileTitleInput.value = userData.title;
+  profileDescriptionInput.value = userData.description;
   editFormValidator.disableButton();
 });
 addNewCardButton.addEventListener("click", () => cardPopupForm.open());
