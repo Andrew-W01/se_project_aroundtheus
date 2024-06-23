@@ -11,12 +11,12 @@ export default class UserInfo {
     };
   }
 
-  setUserInfo(data) {
+  setUserInfo(cardData) {
     if (this._displayName) {
-      this._displayName.textContent = data.title;
+      this._displayName.textContent = cardData.title;
     }
     if (this._displayJob) {
-      this._displayJob.textContent = data.description;
+      this._displayJob.textContent = cardData.description;
     }
   }
 }
