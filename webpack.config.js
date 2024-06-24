@@ -8,6 +8,7 @@ module.exports = {
   entry: {
     main: "./src/pages/index.js",
   },
+
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
@@ -16,8 +17,9 @@ module.exports = {
   target: ["web", "es5"],
   stats: "errors-only",
   mode: "development",
+  plugins: [],
   devServer: {
-    static: path.resolve(__dirname, "dist"),
+    static: path.resolve(__dirname, "./dist"),
     compress: true,
     port: 8080,
     open: true,
@@ -38,9 +40,9 @@ module.exports = {
           {
             loader: "css-loader",
           },
-          "postcss-loader",
         ],
       },
+
       {
         test: /\.(png|svg|jpg|jpeg|gif|woff(2)?|eot|ttf|otf)$/,
         type: "asset/resource",
