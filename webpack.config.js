@@ -1,7 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
@@ -18,9 +17,9 @@ module.exports = {
   stats: "errors-only",
   mode: "development",
   devServer: {
-    static: path.resolve(__dirname, "./dist"),
+    static: path.resolve(__dirname, "dist"),
     compress: true,
-    port: 8800,
+    port: 8080,
     open: true,
     liveReload: true,
     hot: false,
@@ -38,7 +37,6 @@ module.exports = {
           MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
-            options: { importLoaders: 1 },
           },
           "postcss-loader",
         ],
@@ -52,6 +50,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      favicon: "./src/images/favicon.ico",
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin(),
