@@ -17,7 +17,6 @@ module.exports = {
   target: ["web", "es5"],
   stats: "errors-only",
   mode: "development",
-  plugins: [],
   devServer: {
     static: path.resolve(__dirname, "./dist"),
     compress: true,
