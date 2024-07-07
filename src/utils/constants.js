@@ -33,3 +33,5 @@ export const validationSettings = {
   inactiveButtonClass: "modal__button_disabled",
   errorclass: "modal__error",
 };
+
+//commit pull request//

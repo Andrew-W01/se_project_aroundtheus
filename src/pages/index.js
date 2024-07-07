@@ -6,6 +6,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, validationSettings } from "../utils/constants.js";
+import Api from "../components/Api.js";
 
 /*=============================================
 =            wrapper            =
@@ -28,6 +29,43 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
+
+/*=============================================
+=            server request            =
+=============================================*/
+
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "44a613ee-49a5-4945-992f-d05e72aa4852",
+    "Content-Type": "application/json",
+  },
+});
+
+api
+  .fetchUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+  })
+  .catch((error) => {
+    console.error("Error fetching user info:", error);
+  });
+
+api
+  .getInitialCards()
+  .then((cardData) => {
+    cardList.renderItems(cardData);
+  })
+  .catch((error) => {
+    console.error("Error fetching initial cards:", error);
+  });
+
+// api
+// .fetchEditProfile()
+// .then(())
+//api.fetchEditProfile();
+
+// api.fetchNewCard();
 
 /*=============================================
 =           Create Cards          =
