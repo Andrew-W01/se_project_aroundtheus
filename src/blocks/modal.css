@@ -145,6 +145,18 @@
   opacity: 0.6;
 }
 
+.modal__button_confirm {
+  padding: 15px;
+  width: 358px;
+  height: 50px;
+  border-radius: 2px;
+  background-color: #000000;
+  margin: 38px 0 0;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 400;
+}
+
 .modal__button_disabled {
   background-color: #fff;
   border-style: solid;

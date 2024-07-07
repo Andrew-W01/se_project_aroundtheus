@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor(nameSelector, jobSelector) {
+  constructor(nameSelector, jobSelector, imageSelector) {
     this._displayName = document.querySelector(nameSelector);
     this._displayJob = document.querySelector(jobSelector);
+    this._displayImage = document.querySelector(imageSelector);
   }
 
   getUserInfo() {
@@ -18,5 +19,9 @@ export default class UserInfo {
     if (this._displayJob) {
       this._displayJob.textContent = cardData.description;
     }
+  }
+
+  setUserImage(data) {
+    this._displayImage.src = data;
   }
 }

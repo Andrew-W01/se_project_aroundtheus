@@ -27,13 +27,13 @@ export default class Api {
       headers: this._headers,
     });
   }
-  fetchEditProfile(cardData) {
+  fetchEditProfile(userData) {
     return this._request(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: cardData.title,
-        about: cardData.description,
+        name: userData.title,
+        about: userData.description,
       }),
     });
   }
@@ -47,5 +47,17 @@ export default class Api {
         link: cardData.url,
       }),
     });
+  }
+
+  //
+
+  //
+
+  //
+
+  //
+
+  loadPageResults() {
+    return Promise.all([this.getInitialCards(), this.fetchUserInfo()]);
   }
 }

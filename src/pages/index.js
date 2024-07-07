@@ -4,6 +4,7 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import popupWithConfirmation from "../components/PopupWithConfirmation.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, validationSettings } from "../utils/constants.js";
 import Api from "../components/Api.js";
@@ -42,40 +43,48 @@ const api = new Api({
   },
 });
 
+// api
+//   .getInitialCards()
+//   .then((cardData) => {
+//     cardList.renderItems(cardData);
+//   })
+//   .catch((error) => {
+//     console.error("Error fetching initial cards:", error);
+//   });
+
+let cardList;
+let userInfo;
+
 api
-  .fetchUserInfo()
-  .then((userData) => {
+  .loadPageResults()
+  .then(([cards, userData]) => {
+    cardList = new Section(
+      {
+        items: cards,
+        renderer: createCard,
+      },
+      ".cards__list"
+    );
+    cardList.renderItems();
+    userInfo = new UserInfo(
+      ".profile__title",
+      ".profile__description",
+      ".profile__image"
+    );
     userInfo.setUserInfo(userData);
   })
-  .catch((error) => {
-    console.error("Error fetching user info:", error);
-  });
-
-api
-  .getInitialCards()
-  .then((cardData) => {
-    cardList.renderItems(cardData);
-  })
-  .catch((error) => {
-    console.error("Error fetching initial cards:", error);
-  });
-
-// api
-// .fetchEditProfile()
-// .then(())
-//api.fetchEditProfile();
-
-// api.fetchNewCard();
+  .catch(console.error);
 
 /*=============================================
 =           Create Cards          =
 =============================================*/
-
+//fetchnewcard
 function createCard(cardData) {
   const cardElement = new Card(
     cardData,
     "#card-template",
-    handlePreviewPicture
+    handlePreviewPicture,
+    handleDeleteClick
   );
   return cardElement.getView();
 }
@@ -84,25 +93,33 @@ function createCard(cardData) {
 =            User Info            =
 =============================================*/
 
-const userInfo = new UserInfo(".profile__title", ".profile__description");
+// const userInfo = new UserInfo(".profile__title", ".profile__description");
+// userInfo.setUserInfo(userData);
 
-function handleProfileEditSubmit(UserData) {
-  profilePopupForm.close();
-  userInfo.setUserInfo(UserData);
+function handleProfileEditSubmit(userData) {
+  profilePopupForm.setLoading(true);
+  api
+    .fetchEditProfile(userData)
+    .then(() => {
+      userInfo.setUserInfo(UserData);
+      profilePopupForm.close();
+    })
+    .catch((err) => console.error(err))
+    .finally(() => profilePopupForm.setLoading(false));
 }
 
 /*=============================================
 =            section            =
 =============================================*/
 
-const cardList = new Section(
-  {
-    items: initialCards,
-    renderer: createCard,
-  },
-  ".cards__list"
-);
-cardList.renderItems();
+// const cardList = new Section(
+//   {
+//     items: initialCards,
+//     renderer: createCard,
+//   },
+//   ".cards__list"
+// );
+// cardList.renderItems();
 
 function handleAddCardEditSubmit(cardData) {
   const name = cardData.title;
@@ -140,6 +157,7 @@ const cardPopupForm = new PopupWithForm(
 );
 cardPopupForm.setEventListeners();
 
+//fetcheditprofile
 profileEditButton.addEventListener("click", () => {
   profilePopupForm.open();
   const userData = userInfo.getUserInfo();
@@ -148,6 +166,28 @@ profileEditButton.addEventListener("click", () => {
   editFormValidator.disableButton();
 });
 addNewCardButton.addEventListener("click", () => cardPopupForm.open());
+
+/*=============================================
+=            popup confirmation            =
+=============================================*/
+const deleteConfirmPopup = new popupWithConfirmation("#confirm-modal");
+deleteConfirmPopup.setEventListeners();
+
+function handleDeleteClick(card) {
+  deleteConfirmPopup.open();
+
+  deleteConfirmPopup.setSubmitAction(() => {
+    deleteConfirmPopup.setLoading(true);
+    api
+      .deleteCard(card.getId())
+      .then(() => {
+        card.removeCard();
+        deleteConfirmPopup.close();
+      })
+      .catch(console.error)
+      .finally(() => deleteConfirmPopup.setLoading(false));
+  });
+}
 
 /*=============================================
 =            validators            =
