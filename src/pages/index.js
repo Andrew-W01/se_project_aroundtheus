@@ -4,7 +4,7 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import popupWithConfirmation from "../components/PopupWithConfirmation.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import UserInfo from "../components/UserInfo.js";
 import { initialCards, validationSettings } from "../utils/constants.js";
 import Api from "../components/Api.js";
@@ -43,24 +43,15 @@ const api = new Api({
   },
 });
 
-// api
-//   .getInitialCards()
-//   .then((cardData) => {
-//     cardList.renderItems(cardData);
-//   })
-//   .catch((error) => {
-//     console.error("Error fetching initial cards:", error);
-//   });
-
 let cardList;
 let userInfo;
 
 api
   .loadPageResults()
-  .then(([cards, userData]) => {
+  .then(([userData]) => {
     cardList = new Section(
       {
-        items: cards,
+        items: initialCards,
         renderer: createCard,
       },
       ".cards__list"
@@ -93,33 +84,21 @@ function createCard(cardData) {
 =            User Info            =
 =============================================*/
 
-// const userInfo = new UserInfo(".profile__title", ".profile__description");
-// userInfo.setUserInfo(userData);
-
 function handleProfileEditSubmit(userData) {
-  profilePopupForm.setLoading(true);
+  profilePopupForm.open(true);
   api
     .fetchEditProfile(userData)
     .then(() => {
-      userInfo.setUserInfo(UserData);
+      userInfo.setUserInfo(userData);
       profilePopupForm.close();
     })
     .catch((err) => console.error(err))
-    .finally(() => profilePopupForm.setLoading(false));
+    .finally(() => profilePopupForm.close(false));
 }
 
 /*=============================================
 =            section            =
 =============================================*/
-
-// const cardList = new Section(
-//   {
-//     items: initialCards,
-//     renderer: createCard,
-//   },
-//   ".cards__list"
-// );
-// cardList.renderItems();
 
 function handleAddCardEditSubmit(cardData) {
   const name = cardData.title;
@@ -170,22 +149,22 @@ addNewCardButton.addEventListener("click", () => cardPopupForm.open());
 /*=============================================
 =            popup confirmation            =
 =============================================*/
-const deleteConfirmPopup = new popupWithConfirmation("#confirm-modal");
+const deleteConfirmPopup = new PopupWithConfirmation("#confirm-modal");
 deleteConfirmPopup.setEventListeners();
 
-function handleDeleteClick(card) {
+function handleDeleteClick(cardElement) {
   deleteConfirmPopup.open();
 
   deleteConfirmPopup.setSubmitAction(() => {
-    deleteConfirmPopup.setLoading(true);
+    deleteConfirmPopup.open(true);
     api
-      .deleteCard(card.getId())
+      .deleteCard(cardElement.getId())
       .then(() => {
-        card.removeCard();
+        cardElement.removeCard();
         deleteConfirmPopup.close();
       })
       .catch(console.error)
-      .finally(() => deleteConfirmPopup.setLoading(false));
+      .finally(() => deleteConfirmPopup.close(false));
   });
 }
 
