@@ -17,11 +17,14 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            alt="profile pic of jacques cousteu"
-            class="profile__image"
-          />
+          <div class="profile__avatar">
+            <img
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              alt="profile pic of jacques cousteu"
+              class="profile__image"
+            />
+            <button class="profile-image__edit-button"></button>
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -159,6 +162,29 @@
         <form class="modal__form" id="confirm-form">
           <button class="modal__button" type="submit" aria-label="submit">
             Yes
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="picture-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button" aria-label="close"></button>
+        <h2 class="modal__heading-confirm">Change Profile Picture</h2>
+        <form class="modal__form" id="change-profile-form">
+          <div class="modal__form-field">
+            <input
+              class="modal__input"
+              type="url"
+              name="profileurl"
+              id="profileurl"
+              placeholder="Profile Picture URL"
+              required
+            />
+            <span class="modal__error" id="profile-url-error"></span>
+          </div>
+          <button class="modal__button" type="submit" aria-label="submit">
+            Submit
           </button>
         </form>
       </div>

@@ -75,25 +75,42 @@ function createCard(cardData) {
     cardData,
     "#card-template",
     handlePreviewPicture,
-    handleDeleteClick
+    handleDeleteClick,
+    handleLikeClick
   );
   return cardElement.getView();
 }
 
 /*=============================================
-=            User Info            =
+=           profile Info            =
 =============================================*/
 
+const profileImagePopupForm = new PopupWithForm(
+  "#picture-modal",
+  handleProfileEditSubmit
+);
+profileImagePopupForm.setEventListeners();
+
+const profileImageEditButton = document.querySelector(
+  ".profile-image__edit-button"
+);
+
+profileImageEditButton.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  profileImagePopupForm.open();
+  addFormValidator.disableButton();
+});
+
 function handleProfileEditSubmit(userData) {
-  profilePopupForm.open(true);
+  profileImagePopupForm.open(true);
   api
     .fetchEditProfile(userData)
     .then(() => {
       userInfo.setUserInfo(userData);
-      profilePopupForm.close();
+      profileImagePopupForm.close();
     })
     .catch((err) => console.error(err))
-    .finally(() => profilePopupForm.close(false));
+    .finally(() => profileImagePopupForm.close(false));
 }
 
 /*=============================================
@@ -158,7 +175,7 @@ function handleDeleteClick(cardElement) {
   deleteConfirmPopup.setSubmitAction(() => {
     deleteConfirmPopup.open(true);
     api
-      .deleteCard(cardElement.getId())
+      .fetchDeleteCard(cardElement.getId())
       .then(() => {
         cardElement.removeCard();
         deleteConfirmPopup.close();
@@ -166,6 +183,24 @@ function handleDeleteClick(cardElement) {
       .catch(console.error)
       .finally(() => deleteConfirmPopup.close(false));
   });
+}
+
+function handleLikeClick(cardElement) {
+  if (cardElement.getLikes() === true) {
+    api
+      .dislikeCard(cardElement.getId())
+      .then((res) => {
+        cardElement.renderLikes(res.isLiked);
+      })
+      .catch(console.error);
+  } else {
+    api
+      .likeCard(cardElement.getId())
+      .then((res) => {
+        cardElement.renderLikes(res.isLiked);
+      })
+      .catch(console.error);
+  }
 }
 
 /*=============================================

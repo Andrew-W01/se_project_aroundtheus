@@ -16,24 +16,25 @@ export default class Api {
     }
   }
 
+  fetchUserInfo() {
+    return this._request(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+    });
+  }
+
   getInitialCards() {
     return this._request(`${this._baseUrl}/cards`, {
       headers: this._headers,
     });
   }
 
-  fetchUserInfo() {
-    return this._request(`${this._baseUrl}/users/me`, {
-      headers: this._headers,
-    });
-  }
-  fetchEditProfile(userData) {
+  fetchEditProfile(cardData) {
     return this._request(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: userData.title,
-        about: userData.description,
+        name: cardData.title,
+        about: cardData.description,
       }),
     });
   }
@@ -43,19 +44,42 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: cardData.title,
-        link: cardData.url,
+        link: cardData.link,
+        name: cardData.name,
       }),
     });
   }
 
-  //
+  fetchDeleteCard(cardData) {
+    return this._request(`${this._baseUrl}/cards/${cardData}`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
 
-  //
+  fetchLikeCard(cardData) {
+    return this._request(`${this._baseUrl}/cards/${cardData}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    });
+  }
 
-  //
+  fetchDisLikeCard(cardData) {
+    return this._request(`${this._baseUrl}/cards/${cardData}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
 
-  //
+  fetchProfilePicture(link) {
+    return this._request(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: link,
+      }),
+    });
+  }
 
   loadPageResults() {
     return Promise.all([this.getInitialCards(), this.fetchUserInfo()]);

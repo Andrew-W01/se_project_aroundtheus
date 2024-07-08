@@ -12,6 +12,33 @@
   margin-right: 24px;
 }
 
+.profile__avatar {
+  position: relative;
+  height: 120px;
+  width: 120px;
+  margin-right: 30px;
+}
+
+.profile__avatar:hover .profile__image {
+  opacity: 0.4;
+}
+
+.profile-image__edit-button {
+  background-image: url(../images/pointer-cursor.svg) center no-repeat;
+  border: 2px solid #ffffff;
+  height: 26px;
+  width: 26px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: 30px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+}
+
 .profile__info {
   display: grid;
   grid-template-areas:
