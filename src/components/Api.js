@@ -45,39 +45,39 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: cardData.name,
-        link: cardData.link,
+        name: cardData.title,
+        link: cardData.url,
       }),
     });
   }
 
-  fetchDeleteCard(cardId) {
-    return this._request(`${this._baseUrl}/cards/${cardId}`, {
+  fetchDeleteCard(cardData) {
+    return this._request(`${this._baseUrl}/cards/${cardData}`, {
       method: "DELETE",
       headers: this._headers,
     });
   }
 
-  fetchLikeCard(cardId) {
-    return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
+  fetchLikeCard(cardData) {
+    return this._request(`${this._baseUrl}/cards/${cardData}/likes`, {
       method: "PUT",
       headers: this._headers,
     });
   }
 
-  fetchDisLikeCard(cardId) {
-    return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
+  fetchDisLikeCard(cardData) {
+    return this._request(`${this._baseUrl}/cards/${cardData}/likes`, {
       method: "DELETE",
       headers: this._headers,
     });
   }
 
-  fetchProfilePicture(link) {
+  fetchProfilePicture(url) {
     return this._request(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: link,
+        avatar: url,
       }),
     });
   }

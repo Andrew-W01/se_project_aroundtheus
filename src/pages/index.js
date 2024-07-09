@@ -51,7 +51,7 @@ api
   .then(([card, userData]) => {
     cardList = new Section(
       {
-        items: card,
+        items: [...initialCards, ...card],
         renderer: createCard,
       },
       ".cards__list"
@@ -98,7 +98,7 @@ function handleProfileEditSubmit(userData) {
 }
 
 /*=============================================
-=            profile image eidt            =
+=            profile image edit            =
 =============================================*/
 
 const profileImagePopupForm = new PopupWithForm(
@@ -129,6 +129,31 @@ function handleProfilePictureEdit(userData) {
     })
     .catch(console.error)
     .finally(() => profileImagePopupForm.close(false));
+}
+
+/*=============================================
+=            new card            =
+=============================================*/
+
+const cardPopupForm = new PopupWithForm(
+  "#add-card-modal",
+  handleNewCardFormSubmit
+);
+cardPopupForm.setEventListeners();
+
+function handleNewCardFormSubmit(userInfo) {
+  cardPopupForm.open(true);
+  api
+    .fetchNewCard(userInfo)
+    .then((res) => {
+      cardList.addItem(res);
+    })
+    .then(() => {
+      cardFormElement.reset();
+      cardPopupForm.close();
+    })
+    .catch(console.error)
+    .finally(() => cardPopupForm.close(false));
 }
 
 /*=============================================
@@ -165,13 +190,6 @@ const profilePopupForm = new PopupWithForm(
 );
 profilePopupForm.setEventListeners();
 
-const cardPopupForm = new PopupWithForm(
-  // api.fetchNewCard({ url, name }),
-  "#add-card-modal",
-  handleAddCardEditSubmit
-);
-cardPopupForm.setEventListeners();
-
 profileEditButton.addEventListener("click", () => {
   profilePopupForm.open();
   const userData = userInfo.getUserInfo();
@@ -206,15 +224,15 @@ function handleDeleteClick(cardElement) {
 function handleLikeClick(cardElement) {
   if (cardElement.getLikes() === true) {
     api
-      .fetchdislikeCard(cardElement())
-      .then((res) => {
+      .fetchDisLikeCard(cardElement)
+      .then(() => {
         cardElement.renderLikes(cardElement);
       })
       .catch(console.error);
   } else {
     api
-      .fetchlikeCard(cardElement())
-      .then((res) => {
+      .fetchLikeCard(cardElement)
+      .then(() => {
         cardElement.renderLikes(cardElement);
       })
       .catch(console.error);
