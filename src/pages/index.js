@@ -149,7 +149,7 @@ function handleNewCardFormSubmit(userInfo) {
       cardList.addItem(res);
     })
     .then(() => {
-      cardFormElement.reset();
+      addCardFormElement.reset();
       cardPopupForm.close();
     })
     .catch(console.error)
@@ -211,7 +211,7 @@ function handleDeleteClick(cardElement) {
   deleteConfirmPopup.setSubmitAction(() => {
     deleteConfirmPopup.open(true);
     api
-      .fetchDeleteCard(cardElement)
+      .fetchDeleteCard(cardElement.getId())
       .then(() => {
         cardElement.removeCard();
         deleteConfirmPopup.close();
@@ -222,17 +222,19 @@ function handleDeleteClick(cardElement) {
 }
 
 function handleLikeClick(cardElement) {
-  if (cardElement.getLikes() === true) {
+  if (cardElement.isLiked()) {
     api
-      .fetchDisLikeCard(cardElement)
-      .then(() => {
+      .fetchDisLikeCard(cardElement.getId())
+      .then((res) => {
+        cardElement.setLikes(res.likes);
         cardElement.renderLikes(cardElement);
       })
       .catch(console.error);
   } else {
     api
-      .fetchLikeCard(cardElement)
-      .then(() => {
+      .fetchLikeCard(cardElement.getId())
+      .then((res) => {
+        cardElement.setLikes(res.likes);
         cardElement.renderLikes(cardElement);
       })
       .catch(console.error);
