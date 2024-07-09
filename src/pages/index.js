@@ -48,10 +48,10 @@ let userInfo;
 
 api
   .loadPageResults()
-  .then(([userData]) => {
+  .then(([card, userData]) => {
     cardList = new Section(
       {
-        items: initialCards,
+        items: card,
         renderer: createCard,
       },
       ".cards__list"
@@ -85,9 +85,25 @@ function createCard(cardData) {
 =           profile Info            =
 =============================================*/
 
+function handleProfileEditSubmit(userData) {
+  profilePopupForm.open(true);
+  api
+    .fetchEditProfile(userData)
+    .then(() => {
+      userInfo.setUserInfo(userData);
+      profilePopupForm.close();
+    })
+    .catch((err) => console.error(err))
+    .finally(() => profilePopupForm.close(false));
+}
+
+/*=============================================
+=            profile image eidt            =
+=============================================*/
+
 const profileImagePopupForm = new PopupWithForm(
   "#picture-modal",
-  handleProfileEditSubmit
+  handleProfilePictureEdit
 );
 profileImagePopupForm.setEventListeners();
 
@@ -102,15 +118,16 @@ profileImageEditButton.addEventListener("click", (evt) => {
   profileImagePopupForm.open(false);
 });
 
-function handleProfileEditSubmit(userData) {
+function handleProfilePictureEdit(userData) {
   profileImagePopupForm.open(true);
   api
-    .fetchEditProfile(userData)
-    .then(() => {
-      userInfo.setUserInfo(userData);
+    .fetchProfilePicture(userData)
+    .then((res) => {
+      avatarFormElement.reset();
       profileImagePopupForm.close();
+      userInfo.setUserImage(res.avatar);
     })
-    .catch((err) => console.error(err))
+    .catch(console.error)
     .finally(() => profileImagePopupForm.close(false));
 }
 
@@ -149,12 +166,12 @@ const profilePopupForm = new PopupWithForm(
 profilePopupForm.setEventListeners();
 
 const cardPopupForm = new PopupWithForm(
+  // api.fetchNewCard({ url, name }),
   "#add-card-modal",
   handleAddCardEditSubmit
 );
 cardPopupForm.setEventListeners();
 
-//fetcheditprofile
 profileEditButton.addEventListener("click", () => {
   profilePopupForm.open();
   const userData = userInfo.getUserInfo();
@@ -176,7 +193,7 @@ function handleDeleteClick(cardElement) {
   deleteConfirmPopup.setSubmitAction(() => {
     deleteConfirmPopup.open(true);
     api
-      .fetchDeleteCard(cardElement())
+      .fetchDeleteCard(cardElement)
       .then(() => {
         cardElement.removeCard();
         deleteConfirmPopup.close();
@@ -189,16 +206,16 @@ function handleDeleteClick(cardElement) {
 function handleLikeClick(cardElement) {
   if (cardElement.getLikes() === true) {
     api
-      .dislikeCard(cardElement())
+      .fetchdislikeCard(cardElement())
       .then((res) => {
-        cardElement.renderLikes(res.isLiked);
+        cardElement.renderLikes(cardElement);
       })
       .catch(console.error);
   } else {
     api
-      .likeCard(cardElement())
+      .fetchlikeCard(cardElement())
       .then((res) => {
-        cardElement.renderLikes(res.isLiked);
+        cardElement.renderLikes(cardElement);
       })
       .catch(console.error);
   }

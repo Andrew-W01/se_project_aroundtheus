@@ -45,8 +45,8 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        link: cardData.link,
         name: cardData.name,
+        link: cardData.link,
       }),
     });
   }
