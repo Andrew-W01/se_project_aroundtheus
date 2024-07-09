@@ -21,7 +21,7 @@ export default class UserInfo {
     }
   }
 
-  setUserImage(data) {
-    this._displayImage.src = data;
+  setUserImage(cardData) {
+    this._displayImage.src = cardData;
   }
 }

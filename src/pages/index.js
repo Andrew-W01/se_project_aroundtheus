@@ -38,7 +38,7 @@ const profileDescriptionInput = document.querySelector(
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "44a613ee-49a5-4945-992f-d05e72aa4852",
+    authorization: "3235a097-fe3d-431f-b680-2a5fa7b7897e",
     "Content-Type": "application/json",
   },
 });
@@ -99,6 +99,7 @@ profileImageEditButton.addEventListener("click", (evt) => {
   evt.preventDefault();
   profileImagePopupForm.open();
   addFormValidator.disableButton();
+  profileImagePopupForm.open(false);
 });
 
 function handleProfileEditSubmit(userData) {
@@ -175,7 +176,7 @@ function handleDeleteClick(cardElement) {
   deleteConfirmPopup.setSubmitAction(() => {
     deleteConfirmPopup.open(true);
     api
-      .fetchDeleteCard(cardElement.getId())
+      .fetchDeleteCard(cardElement())
       .then(() => {
         cardElement.removeCard();
         deleteConfirmPopup.close();
@@ -188,14 +189,14 @@ function handleDeleteClick(cardElement) {
 function handleLikeClick(cardElement) {
   if (cardElement.getLikes() === true) {
     api
-      .dislikeCard(cardElement.getId())
+      .dislikeCard(cardElement())
       .then((res) => {
         cardElement.renderLikes(res.isLiked);
       })
       .catch(console.error);
   } else {
     api
-      .likeCard(cardElement.getId())
+      .likeCard(cardElement())
       .then((res) => {
         cardElement.renderLikes(res.isLiked);
       })

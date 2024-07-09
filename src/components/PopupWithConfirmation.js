@@ -6,6 +6,7 @@ export default class PopupWithConfirmation extends Popup {
     this._popupForm = this._popupElement.querySelector("#confirm-form");
     this._handleFormSubmit = this._popupForm.querySelector(".modal__button");
     this._submitButtonValue = this._handleFormSubmit.textContent;
+    this._submitAction = null;
   }
 
   setSubmitAction(action) {
@@ -20,11 +21,20 @@ export default class PopupWithConfirmation extends Popup {
     }
   }
 
+  // setEventListeners() {
+  //   super.setEventListeners();
+  //   this._popupForm.addEventListener("submit", (evt) => {
+  //     evt.preventDefault();
+  //     this._submitAction();
+  //   });
+  // }
   setEventListeners() {
     super.setEventListeners();
     this._popupForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._submitAction();
+      if (this._submitAction) {
+        this._submitAction();
+      }
     });
   }
 }

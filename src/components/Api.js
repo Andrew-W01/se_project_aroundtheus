@@ -4,17 +4,18 @@ export default class Api {
     this._headers = headers;
   }
 
-  _request(url, options) {
-    return fetch(url, options).then(this.renderResult);
+  async _request(url, options) {
+    const res = await fetch(url, options);
+    return this.renderResult(res);
   }
 
-  renderResult(res) {
+  renderResult = (res) => {
     if (res.ok) {
       return res.json();
     } else {
       return Promise.reject(`'Error:' ${res.status}`);
     }
-  }
+  };
 
   fetchUserInfo() {
     return this._request(`${this._baseUrl}/users/me`, {
@@ -50,22 +51,22 @@ export default class Api {
     });
   }
 
-  fetchDeleteCard(cardData) {
-    return this._request(`${this._baseUrl}/cards/${cardData}`, {
+  fetchDeleteCard(cardId) {
+    return this._request(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
     });
   }
 
-  fetchLikeCard(cardData) {
-    return this._request(`${this._baseUrl}/cards/${cardData}/likes`, {
+  fetchLikeCard(cardId) {
+    return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
     });
   }
 
-  fetchDisLikeCard(cardData) {
-    return this._request(`${this._baseUrl}/cards/${cardData}/likes`, {
+  fetchDisLikeCard(cardId) {
+    return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
     });
