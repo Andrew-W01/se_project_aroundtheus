@@ -62,7 +62,8 @@ api
       ".profile__description",
       ".profile__image"
     );
-    userInfo.setUserInfo(userData);
+    userInfo.setUserInfo({ title: userData.name, description: userData.about });
+    userInfo.setUserImage(userData.avatar);
   })
   .catch(console.error);
 
@@ -86,15 +87,14 @@ function createCard(cardData) {
 =============================================*/
 
 function handleProfileEditSubmit(userData) {
-  profilePopupForm.open(true);
+  profilePopupForm.setLoading(true);
   api
     .fetchEditProfile(userData)
-    .then(() => {
-      userInfo.setUserInfo(userData);
-      profilePopupForm.close();
+    .then((userData) => {
+      profilePopupForm.close(userData);
     })
     .catch((err) => console.error(err))
-    .finally(() => profilePopupForm.close(false));
+    .finally(() => profilePopupForm.setLoading(false));
 }
 
 /*=============================================
@@ -118,15 +118,15 @@ profileImageEditButton.addEventListener("click", (evt) => {
 });
 
 function handleProfilePictureEdit(userData) {
-  profileImagePopupForm.open(true);
+  profileImagePopupForm.setLoading(true);
   api
-    .fetchProfilePicture(userData)
+    .fetchProfilePicture(userData.profileurl)
     .then((userData) => {
       profileImagePopupForm.close();
-      userInfo.setUserImage(userData);
+      userInfo.setUserImage(userData.avatar);
     })
     .catch(console.error)
-    .finally(() => profileImagePopupForm.close(false));
+    .finally(() => profileImagePopupForm.setLoading(false));
 }
 
 /*=============================================
@@ -140,7 +140,7 @@ const cardPopupForm = new PopupWithForm(
 cardPopupForm.setEventListeners();
 
 function handleNewCardFormSubmit(userInfo) {
-  cardPopupForm.open(true);
+  cardPopupForm.setLoading(true);
   api
     .fetchNewCard(userInfo)
     .then((res) => {
@@ -151,21 +151,8 @@ function handleNewCardFormSubmit(userInfo) {
       cardPopupForm.close();
     })
     .catch(console.error)
-    .finally(() => cardPopupForm.close(false));
+    .finally(() => cardPopupForm.setLoading(false));
 }
-
-/*=============================================
-=            section            =
-=============================================*/
-
-// function handleAddCardEditSubmit(cardData) {
-//   const name = cardData.title;
-//   const link = cardData.url;
-//   cardList.addItem({ name, link });
-//   addFormValidator.disableButton();
-//   cardPopupForm.close();
-//   addCardFormElement.reset();
-// }
 
 /*=============================================
 =            Image            =
@@ -219,21 +206,23 @@ function handleDeleteClick(cardElement) {
   });
 }
 
+/*=============================================
+=            like and dislike            =
+=============================================*/
+
 function handleLikeClick(cardElement) {
-  if (cardElement.isLiked()) {
+  if (cardElement.getLikes()) {
     api
       .fetchDisLikeCard(cardElement.getId())
       .then((res) => {
-        cardElement.setLikes(res.likes);
-        cardElement.renderLikes(cardElement);
+        cardElement.renderLikes(res.isliked);
       })
       .catch(console.error);
   } else {
     api
       .fetchLikeCard(cardElement.getId())
       .then((res) => {
-        cardElement.setLikes(res.likes);
-        cardElement.renderLikes(cardElement);
+        cardElement.renderLikes(res.isliked);
       })
       .catch(console.error);
   }

@@ -4,10 +4,6 @@ export default class Api {
     this._headers = headers;
   }
 
-  // _request(url, options) {
-  //   return fetch(url, options).then(this.renderResult);
-  // }
-
   _request(url, options) {
     return fetch(url, options)
       .then(this._checkResponse)
@@ -23,13 +19,6 @@ export default class Api {
     }
   };
 
-  // _checkResponse(res) {
-  //   if (!res.ok) {
-  //     throw new Error(`Error: ${res.status}`);
-  //   }
-  //   return res;
-  // }
-
   fetchUserInfo() {
     return this._request(`${this._baseUrl}/users/me`, {
       headers: this._headers,
@@ -42,13 +31,13 @@ export default class Api {
     });
   }
 
-  fetchEditProfile(cardData) {
+  fetchEditProfile(userData) {
     return this._request(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: cardData.title,
-        about: cardData.description,
+        name: userData.title,
+        about: userData.description,
       }),
     });
   }
@@ -85,12 +74,12 @@ export default class Api {
     });
   }
 
-  fetchProfilePicture(userData) {
+  fetchProfilePicture(link) {
     return this._request(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: userData,
+        avatar: link,
       }),
     });
   }

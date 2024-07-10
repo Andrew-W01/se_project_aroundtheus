@@ -20,7 +20,7 @@ export default class Card {
     this._cardElement
       .querySelector(".card__like-button")
       .addEventListener("click", () => {
-        this._handleLikeButton(this);
+        this._handleLikeClick(this);
       });
     this._cardElement
       .querySelector(".card__trash-button")
@@ -32,11 +32,32 @@ export default class Card {
     });
   }
 
-  _handleLikeButton = () => {
-    this._cardElement
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
-  };
+  // _handleLikeButton = () => {
+  //   this._cardElement
+  //     .querySelector(".card__like-button")
+  //     .classList.toggle("card__like-button_active");
+  // };
+
+  renderLikes(isLiked) {
+    this._isLiked = isLiked;
+    if (this._isLiked === true) {
+      this._cardElement
+        .querySelector(".card__like-button")
+        .classList.toggle("card__like-button_active");
+    } else {
+      this._cardElement
+        .querySelector(".card__like-button")
+        .classList.toggle("card__like-button_active");
+    }
+  }
+
+  // setLikes() {
+
+  // }
+
+  // isLiked() {
+  //   return this._likes;
+  // }
 
   getLikes() {
     return this._isLiked;
