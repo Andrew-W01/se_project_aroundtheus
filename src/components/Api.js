@@ -4,18 +4,31 @@ export default class Api {
     this._headers = headers;
   }
 
-  async _request(url, options) {
-    const res = await fetch(url, options);
-    return this.renderResult(res);
+  // _request(url, options) {
+  //   return fetch(url, options).then(this.renderResult);
+  // }
+
+  _request(url, options) {
+    return fetch(url, options)
+      .then(this._checkResponse)
+      .then((res) => res.json())
+      .catch(this._handleError);
   }
 
   renderResult = (res) => {
     if (res.ok) {
       return res.json();
     } else {
-      return Promise.reject(`'Error:' ${res.status}`);
+      return Promise.reject(`Error: ${res.status}`);
     }
   };
+
+  // _checkResponse(res) {
+  //   if (!res.ok) {
+  //     throw new Error(`Error: ${res.status}`);
+  //   }
+  //   return res;
+  // }
 
   fetchUserInfo() {
     return this._request(`${this._baseUrl}/users/me`, {
@@ -58,26 +71,26 @@ export default class Api {
     });
   }
 
-  fetchLikeCard(cardData) {
-    return this._request(`${this._baseUrl}/cards/${cardData}/likes`, {
+  fetchLikeCard(cardId) {
+    return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
     });
   }
 
-  fetchDisLikeCard(cardData) {
-    return this._request(`${this._baseUrl}/cards/${cardData}/likes`, {
+  fetchDisLikeCard(cardId) {
+    return this._request(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
     });
   }
 
-  fetchProfilePicture(url) {
+  fetchProfilePicture(userData) {
     return this._request(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        avatar: url,
+        avatar: userData,
       }),
     });
   }

@@ -115,17 +115,15 @@ profileImageEditButton.addEventListener("click", (evt) => {
   evt.preventDefault();
   profileImagePopupForm.open();
   addFormValidator.disableButton();
-  profileImagePopupForm.open(false);
 });
 
 function handleProfilePictureEdit(userData) {
   profileImagePopupForm.open(true);
   api
     .fetchProfilePicture(userData)
-    .then((res) => {
-      avatarFormElement.reset();
+    .then((userData) => {
       profileImagePopupForm.close();
-      userInfo.setUserImage(res.avatar);
+      userInfo.setUserImage(userData);
     })
     .catch(console.error)
     .finally(() => profileImagePopupForm.close(false));
@@ -160,14 +158,14 @@ function handleNewCardFormSubmit(userInfo) {
 =            section            =
 =============================================*/
 
-function handleAddCardEditSubmit(cardData) {
-  const name = cardData.title;
-  const link = cardData.url;
-  cardList.addItem({ name, link });
-  addFormValidator.disableButton();
-  cardPopupForm.close();
-  addCardFormElement.reset();
-}
+// function handleAddCardEditSubmit(cardData) {
+//   const name = cardData.title;
+//   const link = cardData.url;
+//   cardList.addItem({ name, link });
+//   addFormValidator.disableButton();
+//   cardPopupForm.close();
+//   addCardFormElement.reset();
+// }
 
 /*=============================================
 =            Image            =
@@ -209,7 +207,7 @@ function handleDeleteClick(cardElement) {
   deleteConfirmPopup.open();
 
   deleteConfirmPopup.setSubmitAction(() => {
-    deleteConfirmPopup.open(true);
+    deleteConfirmPopup.setLoading(true);
     api
       .fetchDeleteCard(cardElement.getId())
       .then(() => {
@@ -217,7 +215,7 @@ function handleDeleteClick(cardElement) {
         deleteConfirmPopup.close();
       })
       .catch(console.error)
-      .finally(() => deleteConfirmPopup.close(false));
+      .finally(() => deleteConfirmPopup.setLoading(false));
   });
 }
 

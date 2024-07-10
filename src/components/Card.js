@@ -13,7 +13,7 @@ export default class Card {
     this._handleDeleteClick = handleDeleteClick;
     this._handleLikeClick = handleLikeClick;
     this._cardId = cardData._id;
-    this._likes = cardData.likes;
+    this._isLiked = cardData._isLiked;
   }
 
   _setEventListeners() {
@@ -38,16 +38,12 @@ export default class Card {
       .classList.toggle("card__like-button_active");
   };
 
-  _handleDeleteClick = () => {
-    this._cardElement.remove();
-  };
-
-  isLiked() {
-    return this._likes.some((like) => like._id === userId);
+  getLikes() {
+    return this._isLiked;
   }
 
-  setLikes(likes) {
-    this._likes = likes;
+  removeCard() {
+    this._cardElement.remove();
   }
 
   _getTemplate() {
@@ -55,10 +51,6 @@ export default class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
-  }
-
-  removeCard() {
-    this._cardElement.remove();
   }
 
   getView() {
