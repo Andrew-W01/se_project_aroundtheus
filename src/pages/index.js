@@ -15,6 +15,7 @@ import Api from "../components/Api.js";
 const profileEditModal = document.querySelector("#profileEditModal");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardFormElement = addCardModal.querySelector(".modal__form");
+const avatarFormElement = document.querySelector("#change-profile-form");
 
 /*=============================================
 =             Buttons and other DOM nodes            =
@@ -90,8 +91,9 @@ function handleProfileEditSubmit(userData) {
   profilePopupForm.setLoading(true);
   api
     .fetchEditProfile(userData)
-    .then((userData) => {
-      profilePopupForm.close(userData);
+    .then(() => {
+      userInfo.setUserInfo();
+      profilePopupForm.close();
     })
     .catch((err) => console.error(err))
     .finally(() => profilePopupForm.setLoading(false));
@@ -115,6 +117,7 @@ profileImageEditButton.addEventListener("click", (evt) => {
   evt.preventDefault();
   profileImagePopupForm.open();
   addFormValidator.disableButton();
+  form.reset;
 });
 
 function handleProfilePictureEdit(userData) {
@@ -122,6 +125,7 @@ function handleProfilePictureEdit(userData) {
   api
     .fetchProfilePicture(userData.profileurl)
     .then((userData) => {
+      avatarFormElement.reset();
       profileImagePopupForm.close();
       userInfo.setUserImage(userData.avatar);
     })
@@ -148,6 +152,7 @@ function handleNewCardFormSubmit(userInfo) {
     })
     .then(() => {
       addCardFormElement.reset();
+      addFormValidator.disableButton();
       cardPopupForm.close();
     })
     .catch(console.error)
@@ -243,3 +248,9 @@ const addFormValidator = new FormValidator(
   addCardFormElement
 );
 addFormValidator.enableValidation();
+
+const avatarFormValidator = new FormValidator(
+  validationSettings,
+  avatarFormElement
+);
+avatarFormValidator.enableValidation();

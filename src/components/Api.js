@@ -7,8 +7,7 @@ export default class Api {
   _request(url, options) {
     return fetch(url, options)
       .then(this._checkResponse)
-      .then((res) => res.json())
-      .catch(this._handleError);
+      .then((res) => res.json());
   }
 
   renderResult = (res) => {

@@ -32,12 +32,6 @@ export default class Card {
     });
   }
 
-  // _handleLikeButton = () => {
-  //   this._cardElement
-  //     .querySelector(".card__like-button")
-  //     .classList.toggle("card__like-button_active");
-  // };
-
   renderLikes(isLiked) {
     this._isLiked = isLiked;
     if (this._isLiked === true) {
@@ -50,14 +44,6 @@ export default class Card {
         .classList.toggle("card__like-button_active");
     }
   }
-
-  // setLikes() {
-
-  // }
-
-  // isLiked() {
-  //   return this._likes;
-  // }
 
   getLikes() {
     return this._isLiked;
