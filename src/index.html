@@ -79,7 +79,7 @@
           ></span>
           <button
             class="modal__button modal__button_disabled"
-            disabled
+            disable
             type="submit"
           >
             Save
@@ -92,7 +92,7 @@
 
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
-        <button class="modal__close" type="button"></button>
+        <button class="modal__close" type="button" disable></button>
         <h3 class="modal__heading">New Place</h3>
         <form class="modal__form" id="add-card-form">
           <input
@@ -122,15 +122,13 @@
           <button
             class="modal__button modal__button_disabled"
             type="submit"
-            disabled
+            disable
           >
             Save
           </button>
         </form>
       </div>
     </div>
-
-    /*===== Picture Preview Modal======*/
 
     <div class="modal" id="preview-picture-modal">
       <div class="modal__picture_container">
@@ -145,8 +143,6 @@
       </div>
     </div>
 
-    /*===== Template ======*/
-
     <template id="card-template">
       <li class="card">
         <button class="card__trash-button" type="button"></button>
@@ -157,8 +153,6 @@
         </div>
       </li>
     </template>
-
-    /*===== Add Confirm Button ======*/
 
     <div class="modal" id="confirm-modal">
       <div class="modal__container">

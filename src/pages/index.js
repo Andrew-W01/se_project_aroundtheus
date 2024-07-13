@@ -92,7 +92,10 @@ function handleProfileEditSubmit(userData) {
   api
     .fetchEditProfile(userData)
     .then(() => {
-      userInfo.setUserInfo();
+      userInfo.setUserInfo({
+        title: userData.title,
+        description: userData.description,
+      });
       profilePopupForm.close();
     })
     .catch((err) => console.error(err))
@@ -220,14 +223,18 @@ function handleLikeClick(cardElement) {
     api
       .fetchDisLikeCard(cardElement.getId())
       .then((res) => {
+        console.log(res);
         cardElement.renderLikes(res.isliked);
+        cardElement._isLiked = res.isliked;
       })
       .catch(console.error);
   } else {
     api
       .fetchLikeCard(cardElement.getId())
       .then((res) => {
+        console.log(res);
         cardElement.renderLikes(res.isliked);
+        cardElement._isLiked = res.isliked;
       })
       .catch(console.error);
   }
