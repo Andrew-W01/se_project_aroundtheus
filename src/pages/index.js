@@ -217,24 +217,38 @@ function handleDeleteClick(cardElement) {
 /*=============================================
 =            like and dislike            =
 =============================================*/
+// function handleLikeClick(cardElement) {
+//   const cardId = cardElement.getId();
+//   const isLiked = cardElement.getLikes();
 
+//   const apiCall = isLiked
+//     ? api.fetchDisLikeCard(cardId)
+//     : api.fetchLikeCard(cardId);
+
+//   apiCall
+//     .then((res) => {
+//       cardElement.renderLikes(res.isLiked); // Ensure property name consistency
+//       cardElement._isLiked = res.isLiked;
+//     })
+//     .catch((error) => {
+//       console.error("Failed to update like status:", error);
+//     });
+// }
 function handleLikeClick(cardElement) {
   if (cardElement.getLikes()) {
     api
       .fetchDisLikeCard(cardElement.getId())
       .then((res) => {
-        console.log(res);
-        cardElement.renderLikes(res.isliked);
-        cardElement._isLiked = res.isliked;
+        cardElement.renderLikes(res.isLiked);
+        cardElement._isLiked = res.isLiked;
       })
       .catch(console.error);
   } else {
     api
       .fetchLikeCard(cardElement.getId())
       .then((res) => {
-        console.log(res);
-        cardElement.renderLikes(res.isliked);
-        cardElement._isLiked = res.isliked;
+        cardElement.renderLikes(res.isLiked);
+        cardElement._isLiked = res.isLiked;
       })
       .catch(console.error);
   }
