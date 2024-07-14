@@ -155,7 +155,6 @@ function handleNewCardFormSubmit(userInfo) {
       cardList.addItem(res);
     })
     .then(() => {
-      addCardFormElement.reset();
       addFormValidator.disableButton();
       cardPopupForm.close();
     })
@@ -225,7 +224,7 @@ function handleLikeClick(cardElement) {
       .fetchDisLikeCard(cardElement.getId())
       .then((res) => {
         cardElement.renderLikes(res.isLiked);
-        cardElement._isLiked = res.isLiked;
+        cardElement.isLiked = res.isLiked;
       })
       .catch(console.error);
   } else {
@@ -233,7 +232,7 @@ function handleLikeClick(cardElement) {
       .fetchLikeCard(cardElement.getId())
       .then((res) => {
         cardElement.renderLikes(res.isLiked);
-        cardElement._isLiked = res.isLiked;
+        cardElement.isLiked = res.isLiked;
       })
       .catch(console.error);
   }

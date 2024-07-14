@@ -5,9 +5,7 @@ export default class Api {
   }
 
   _request(url, options) {
-    return fetch(url, options)
-      .then(this._checkResponse)
-      .then((res) => res.json());
+    return fetch(url, options).then(this.renderResult);
   }
 
   renderResult = (res) => {
