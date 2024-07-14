@@ -52,7 +52,7 @@ api
   .then(([card, userData]) => {
     cardList = new Section(
       {
-        items: [...initialCards, ...card],
+        items: [...card],
         renderer: createCard,
       },
       ".cards__list"
