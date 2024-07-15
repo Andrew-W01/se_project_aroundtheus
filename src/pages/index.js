@@ -134,7 +134,9 @@ function handleProfilePictureEdit(userData) {
       userInfo.setUserImage(userData.avatar);
     })
     .catch(console.error)
-    .finally(() => profileImagePopupForm.setLoading(false));
+    .finally(() => {
+      profileImagePopupForm.setLoading(false);
+    });
 }
 
 /*=============================================
@@ -155,6 +157,7 @@ function handleNewCardFormSubmit(userInfo) {
       cardList.addItem(res);
     })
     .then(() => {
+      addCardFormElement.reset();
       addFormValidator.disableButton();
       cardPopupForm.close();
     })
