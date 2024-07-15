@@ -119,9 +119,9 @@ const profileImageEditButton = document.querySelector(
 const form = document.querySelector("#change-profile-form");
 profileImageEditButton.addEventListener("click", (evt) => {
   evt.preventDefault();
+  form.reset;
   profileImagePopupForm.open();
   addFormValidator.disableButton();
-  form.reset;
 });
 
 function handleProfilePictureEdit(userData) {
