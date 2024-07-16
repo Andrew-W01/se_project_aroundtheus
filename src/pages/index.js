@@ -131,6 +131,7 @@ function handleProfilePictureEdit(userData) {
     .then((userData) => {
       avatarFormElement.reset();
       profileImagePopupForm.close();
+      avatarFormValidator.disableButton();
       userInfo.setUserImage(userData.avatar);
     })
     .catch(console.error)
