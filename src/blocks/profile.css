@@ -12,6 +12,34 @@
   margin-right: 24px;
 }
 
+.profile__avatar {
+  position: relative;
+}
+
+.profile__avatar:hover .profile__image {
+  opacity: 0.4;
+}
+
+.profile-image__edit-button {
+  background: transparent url(../images/bold-pointer.svg) center no-repeat;
+  border: none;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  cursor: pointer;
+}
+.profile-image__edit-button:hover {
+  opacity: 1;
+}
+
 .profile__info {
   display: grid;
   grid-template-areas:
@@ -77,6 +105,10 @@
 }
 .profile__add-button:hover {
   opacity: 0.6;
+}
+
+#profile-url-error {
+  top: 125px;
 }
 
 @media screen and (max-width: 800px) {

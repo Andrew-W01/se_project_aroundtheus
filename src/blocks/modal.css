@@ -80,6 +80,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 16.94px;
+  width: 358px;
 }
 
 .modal__input:first-of-type {
@@ -143,6 +144,33 @@
 
 .modal__close-button:hover {
   opacity: 0.6;
+}
+
+.modal__button_confirm {
+  padding: 15px;
+  width: 358px;
+  height: 50px;
+  border-radius: 2px;
+  background-color: #000000;
+  margin: 38px 0 0;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.modal__heading_confirm {
+  color: #000;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29.05px;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  margin-bottom: 38px;
+  margin-top: 0;
+}
+
+.modal__heading-confirm {
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: #000;
 }
 
 .modal__button_disabled {
